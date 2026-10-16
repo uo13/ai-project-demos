@@ -1,0 +1,13 @@
+{
+  "name": "ai-project-demos",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "邵保瑞的 AI 项目案例、可交互 Demo 与验证记录",
+  "scripts": {
+    "dev": "node tools/serve.mjs",
+    "test": "node --test demos/shise/tests/engine.test.mjs && node tools/check.mjs",
+    "build": "node tools/render-docs.mjs && node tools/build.mjs"
+  },
+  "engines": {"node": ">=20"}
+}

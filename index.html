@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="邵保瑞的 AI 产品与原型作品集：拾色、AIPhoto、花令 Agent、短剧工作流、语料结构因子与网页模拟器。">
+<meta name="theme-color" content="#182d27"><title>邵保瑞 · AI 项目与 Demo</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/color-engine.js" defer></script><script src="assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#projects">跳到项目</a>
+<header class="nav wrap"><a class="brand" href="#"><span class="brand-icon">邵</span> 邵保瑞 <span class="dim">/ 项目档案</span></a><nav aria-label="主要导航"><a href="#projects">作品</a><a href="#lab">动手试试</a><a href="https://github.com/uo13" target="_blank" rel="noopener noreferrer">GitHub ↗</a></nav></header>
+<main>
+<section class="hero wrap"><div class="eyebrow"><span class="dot"></span> AI PRODUCT / CREATIVE TOOLS / PROTOTYPES</div><h1>让 AI，<br>走出<span class="outlined">聊天框。</span></h1><div class="hero-bottom"><p>我是邵保瑞。把图像、对话与内容工作的需求，<br class="desktop">做成可以操作、复核和继续迭代的工具。</p><a class="button dark" href="#lab">体验三个 Demo <span>↘</span></a></div><div class="hero-meta"><span>06 个项目主题</span><span>03 个交互演示</span><span>整理于 2026.10.17</span></div></section>
+
+<section id="projects" class="section wrap"><div class="section-head"><div><div class="eyebrow">SELECTED WORK / 01—06</div><h2>从一个问题，到一个工具。</h2></div><p class="dim">产品思考 · 实现链路 · 可核查交付</p></div>
+<div class="project-list">
+<a class="project-row" href="docs/shise.html"><span class="number">01</span><div><h3>拾色 <span>把喜欢的色彩，变成可调参数。</span></h3><p>参考图分析、结构化方案、本地像素渲染与导出。</p></div><span class="pill green">图像工具</span><span class="arrow">↗</span></a>
+<a class="project-row" href="docs/aiphoto.html"><span class="number">02</span><div><h3>AIPhoto <span>让预览与成片走通同一条链路。</span></h3><p>iOS 相机、参考图追色、画面方向与状态竞态处理。</p></div><span class="pill">iOS 工程</span><span class="arrow">↗</span></a>
+<a class="project-row" href="docs/hualing.html"><span class="number">03</span><div><h3>花令 Agent <span>从一次档案，开始持续对话。</span></h3><p>档案与主题入口、Agent 服务、前后端产品交付。</p></div><span class="pill">协作产品</span><span class="arrow">↗</span></a>
+<a class="project-row" href="docs/drama-workflow.html"><span class="number">04</span><div><h3>短剧工作流 <span>让长任务有状态、有规则、有修订。</span></h3><p>配置、分场、信息台账、格式检查与连续性复核。</p></div><span class="pill peach">内容工具</span><span class="arrow">↗</span></a>
+<a class="project-row" href="docs/story-factors.html"><span class="number">05</span><div><h3>结构因子流水线 <span>把故事，整理成能回查的材料。</span></h3><p>清洗、分片提取、摘录校验、结构检索与异常修补。</p></div><span class="pill peach">语料处理</span><span class="arrow">↗</span></a>
+<a class="project-row" href="docs/simulators.html"><span class="number">06</span><div><h3>网页模拟器 <span>把复杂规则，变成下一次选择。</span></h3><p>百年门第、候时仙族及手机版的浏览器产品原型。</p></div><span class="pill">游戏原型</span><span class="arrow">↗</span></a>
+</div></section>
+
+<section id="lab" class="lab"><div class="wrap"><div class="section-head"><div><div class="eyebrow">THE DEMO ROOM</div><h2>点一下，比介绍更直观。</h2></div><p class="dim">本页三个演示均在浏览器内运行，无需密钥。</p></div>
+<article class="color-demo"><div class="demo-copy"><span class="demo-id">DEMO 01 / 图像</span><h3>一种画面，<br>几种色彩表达。</h3><p>切换方案、调整强度，看看色温、影调与色彩如何一起变化。</p><p class="small">使用拾色已有像素渲染代码 + 人工预设。<br>默认场景为程序绘制示意图，非照片实测。</p><div class="preset-group" role="group" aria-label="色彩方案"><button class="preset active" data-preset="warm" aria-pressed="true">暖日</button><button class="preset" data-preset="cool" aria-pressed="false">冷青</button><button class="preset" data-preset="soft" aria-pressed="false">柔和</button></div><label class="range-label" for="strength">调色强度 <output id="strength-label">80%</output></label><input id="strength" type="range" min="0" max="200" value="80" step="1"><div class="demo-actions"><label class="button light" for="photo-input">换成我的图片</label><input id="photo-input" type="file" accept="image/*" hidden><button id="color-reset" class="text-button">恢复示意图</button></div><a class="text-link" href="demos/shise/index.html">打开完整参考图仿色工具 ↗</a></div><div class="canvas-area"><div class="image-meta"><span>LOCAL COLOR RENDERER</span><span id="image-source">示意场景</span></div><div class="canvas-grid"><figure><canvas id="original" width="600" height="470" aria-label="未调色原图"></canvas><figcaption>原图</figcaption></figure><figure><canvas id="graded" width="600" height="470" aria-label="本地调色结果"></canvas><figcaption>参数渲染后 <button id="download-image">下载 PNG ↓</button></figcaption></figure></div><p id="color-status" role="status" class="small">上传图片仅在本页处理，不发送到服务器。</p></div></article>
+
+<div class="lab-grid"><article class="tool-panel"><div class="demo-id">DEMO 02 / 内容</div><h3>格式约束，要能落到具体一行。</h3><p>改动这段示例，再检查一次。结果只检查格式，不替代编辑审稿。</p><label class="sr-only" for="script-input">剧本格式检查示例</label><textarea id="script-input" spellcheck="false">第1集
+1-1 日 内 修复工坊
+人物：陈知微、方程
+▲知微把贴着唐珂名字的展牌放到桌上。
+陈知微：我的作品，为什么署她的名字？
+方程：先把今天的展览办完。
+▲知微打开报名邮件，将原始申请编号转向他。
+陈知微：那我们就先把作者写清楚。</textarea><div class="tool-actions"><button class="button dark" id="check-script">运行格式检查 ↗</button><button class="text-button" id="download-report">下载结果 ↓</button></div><div id="qa-result" class="qa-result" aria-live="polite"></div><p class="small">本次新写的演示片段。规则检查不调用模型，不产生文学质量分数。</p></article>
+<article class="tool-panel peach-panel"><div class="demo-id">DEMO 03 / 语料</div><h3>检索的是行动机制，<br>不只是一个标签。</h3><p>试试「公开 核验」「职业 重建」或「秘密」。空格分隔的词需要同时命中。</p><label class="searchbox" for="factor-search"><span>⌕</span><input id="factor-search" type="search" placeholder="搜索人物目标、手段或道具" autocomplete="off"></label><div class="search-examples"><button data-query="公开 核验">公开 核验</button><button data-query="职业 重建">职业 重建</button><button data-query="">全部样例</button></div><p id="factor-count" class="small" role="status"></p><div id="factor-results" class="factor-results"></div><p class="small">六条原创演示记录，与历史 185 篇提取结果分开。<a href="data/factors-demo.json" download>下载样例 JSON ↓</a></p></article></div>
+</div></section>
+
+<section class="evidence wrap"><div><div class="eyebrow">EVIDENCE, WITH CONTEXT</div><h2>数字有来源，<br>结论有边界。</h2><p>结构因子项目已有批次的历史自动校验摘要。<br>原始池 522 篇，其余 337 篇不在该批次内。</p><a class="text-link" href="docs/story-factors.html">查看记录与限制 ↗</a></div><div class="stat-grid"><div><strong>185<span>篇</span></strong><p>已冻结批次覆盖</p></div><div><strong>3,083<span>条</span></strong><p>摘录逐字命中原文</p></div><div><strong>2,269<span>条</span></strong><p>主事件链记录</p></div><div><strong>0<span>项</span></strong><p>历史结构校验问题</p></div><p class="small stat-note">记录日期 2026-10-16。字段与摘录通过不代表语义全部人工复核，不代表读者效果或检索准确率。</p></div></section>
+
+<section class="closing"><div class="wrap"><div class="eyebrow">MORE TO EXPLORE</div><h2>还有一些，已经在运行的原型。</h2><div class="game-links"><a href="https://uo13.github.io/bainian-mendi-simulator/" target="_blank" rel="noopener noreferrer"><span>百年门第</span>古代世家经营模拟器 <b>试玩 ↗</b></a><a href="https://github.com/uo13/houshi-clan-simulator" target="_blank" rel="noopener noreferrer"><span>候时仙族</span>节气与家族修仙原型 <b>仓库 ↗</b></a><a href="https://github.com/uo13/houshi-clan-simulator-mobile" target="_blank" rel="noopener noreferrer"><span>候时仙族 · 手机版</span>面向窄屏的阅读与交互 <b>仓库 ↗</b></a></div></div></section>
+</main>
+<footer class="wrap"><div><b>邵保瑞 / AI 项目与 Demo</b><p>把想法做出来，也把实际做到哪里说清楚。</p></div><div><a href="docs/sources.html">来源与署名</a><a href="docs/demo-scope.html">演示范围</a><a href="https://github.com/uo13/ai-project-demos" target="_blank" rel="noopener noreferrer">查看源码 ↗</a></div></footer>
+</body></html>
