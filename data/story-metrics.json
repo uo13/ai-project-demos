@@ -1,0 +1,18 @@
+{
+  "record_date": "2026-10-16",
+  "kind": "historical_automated_validation_summary",
+  "original_pool": 522,
+  "covered": 185,
+  "excluded_from_test": 337,
+  "quote_ok": 3083,
+  "quote_miss": 0,
+  "beats": 2269,
+  "changes": 1141,
+  "devices": 1620,
+  "structure_issues": 0,
+  "limits": [
+    "Not a full 522-story completion claim.",
+    "Exact quote matching does not mean full semantic human review.",
+    "No market, paid-wall or retrieval-accuracy validation."
+  ]
+}
