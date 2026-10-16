@@ -1,0 +1,10 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';
+import {validateRecord} from '../demos/story-lab/validator.mjs';
+const sample=JSON.parse(readFileSync(new URL('../data/story-sample.json',import.meta.url),'utf8'));const schema=JSON.parse(readFileSync(new URL('../data/story-record.schema.json',import.meta.url),'utf8'));const record=()=>structuredClone(sample.record);
+test('Original synthetic fixture satisfies core contract and exact evidence',()=>{const r=validateRecord(record(),sample.source,schema);assert.equal(r.passed,true);assert.equal(r.evidence.length,12);});
+test('Fabricated quote is rejected with a located error',()=>{const r=record();r.简介钩子='这句话没有出现在原文';assert(validateRecord(r,sample.source,schema).issues.some(x=>x.path==='$.简介钩子'&&x.code==='QUOTE_MISS'));});
+test('Missing nested field is located',()=>{const r=record();delete r.核心伤害.原文证据;assert(validateRecord(r,sample.source,schema).issues.some(x=>x.path==='$.核心伤害.原文证据'&&x.code==='REQUIRED'));});
+test('Too few beats fails even with valid JSON',()=>{const r=record();r.情节链=r.情节链.slice(0,7);assert(validateRecord(r,sample.source,schema).issues.some(x=>x.code==='MIN_ITEMS'));});
+test('Out-of-order beat fails',()=>{const r=record();r.情节链[2].序=9;assert(validateRecord(r,sample.source,schema).issues.some(x=>x.code==='ORDER'));});
+test('Invalid candidate hook taxonomy fails',()=>{const r=record();r.情节链[0].卡点类型='模型自造分类';assert(validateRecord(r,sample.source,schema).issues.some(x=>x.code==='HOOK_TYPE'));});
+test('Non-object input produces a result instead of a crash',()=>{assert.equal(validateRecord(null,sample.source,schema).passed,false);});
