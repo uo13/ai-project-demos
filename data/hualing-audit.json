@@ -1,0 +1,185 @@
+{
+  "audit_date": "2026-10-17",
+  "method": "Execute unmodified production AgentService and tool base after replacing application import boundaries; model rounds and tool executors are synthetic fixtures; no network or database.",
+  "source_files": [
+    {
+      "path": "hualing-backend/app/services/agent_service.py",
+      "sha256": "ab6082aa268c98e15b46075e3ab634985997d42dc2e65d7e40049895faa28e3e"
+    },
+    {
+      "path": "hualing-backend/app/tools/base.py",
+      "sha256": "b47db35fc50b29c746ee1449e2bae5a80ed0cafb92c327dfe769791e1b713cc5"
+    }
+  ],
+  "summary": {
+    "total": 12,
+    "passed": 10,
+    "failed": 2
+  },
+  "cases": [
+    {
+      "id": "H01",
+      "title": "未配置服务时明确失败",
+      "expected": "missing_api_key",
+      "observed": "missing_api_key",
+      "passed": true,
+      "events": []
+    },
+    {
+      "id": "H02",
+      "title": "多工具执行后回传结果并结束",
+      "expected": {
+        "tools": 2,
+        "rounds": 2,
+        "stop": "completed"
+      },
+      "observed": {
+        "tools": 2,
+        "rounds": 2,
+        "stop": "completed",
+        "execution_trace": null
+      },
+      "passed": true,
+      "events": [
+        "tool_call_start",
+        "tool_call_result",
+        "tool_call_start",
+        "tool_call_result"
+      ]
+    },
+    {
+      "id": "H03",
+      "title": "工具缺参后从用户消息修复并限次重试",
+      "expected": {
+        "attempts": 2,
+        "date": "2026-10-17"
+      },
+      "observed": {
+        "attempts": 2,
+        "arguments": [
+          {},
+          {
+            "date": "2026-10-17"
+          }
+        ],
+        "stop": "completed"
+      },
+      "passed": true,
+      "events": [
+        "tool_call_start",
+        "tool_call_result"
+      ]
+    },
+    {
+      "id": "H04",
+      "title": "上游错误不冒充成功",
+      "expected": "provider_error",
+      "observed": "provider_error",
+      "passed": true,
+      "events": []
+    },
+    {
+      "id": "H05",
+      "title": "工具循环受到轮数限制",
+      "expected": "max_rounds_exceeded",
+      "observed": "max_rounds_exceeded",
+      "passed": true,
+      "events": [
+        "tool_call_start",
+        "tool_call_result",
+        "tool_call_start",
+        "tool_call_result"
+      ]
+    },
+    {
+      "id": "H06",
+      "title": "续写预算耗尽后保留截断状态",
+      "expected": "length_exceeded",
+      "observed": "length_exceeded",
+      "passed": true,
+      "events": []
+    },
+    {
+      "id": "H07",
+      "title": "空回答重试仍为空时明确失败",
+      "expected": "empty_response",
+      "observed": "empty_response",
+      "passed": true,
+      "events": []
+    },
+    {
+      "id": "H08",
+      "title": "显式档案覆盖模型提供的未选中 ID",
+      "expected": "selected-a",
+      "observed": {
+        "record_id": "selected-a",
+        "birth_info_present": false
+      },
+      "passed": true,
+      "events": []
+    },
+    {
+      "id": "H09",
+      "title": "原始 reasoning_content 不进入规范化消息",
+      "expected": false,
+      "observed": false,
+      "passed": true,
+      "events": []
+    },
+    {
+      "id": "H10",
+      "title": "SSE 单字节切片不破坏中文 UTF-8",
+      "expected": true,
+      "observed": true,
+      "passed": true,
+      "events": []
+    },
+    {
+      "id": "H11",
+      "title": "第二个选中档案的 ID 与出生信息保持一致",
+      "expected": {
+        "record_id": "selected-b",
+        "birth_info": {
+          "year": 2001,
+          "month": 3,
+          "day": 3
+        }
+      },
+      "observed": {
+        "record_id": "selected-b",
+        "birth_info": {
+          "year": 2000,
+          "month": 2,
+          "day": 2
+        }
+      },
+      "passed": false,
+      "events": []
+    },
+    {
+      "id": "H12",
+      "title": "仅以档案 ID 查询时不重新注入旧出生信息",
+      "expected": {
+        "record_id": "record-only",
+        "birth_info_present": false
+      },
+      "observed": {
+        "record_id": "record-only",
+        "birth_info": {
+          "year": 1990,
+          "month": 1,
+          "day": 1
+        }
+      },
+      "passed": false,
+      "events": []
+    }
+  ],
+  "limits": [
+    "Not a live provider integration test.",
+    "Not an ownership attestation for individual contributions.",
+    "Production source unchanged.",
+    "Database access and executor ownership validation outside this audit.",
+    "run() execution_trace is None in this snapshot; emitted tool events are tested instead."
+  ]
+}

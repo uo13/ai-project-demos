@@ -1,0 +1,187 @@
+{
+  "timestamp": "2026-10-16T21:17:02.222Z",
+  "summary": {
+    "total": 21,
+    "passed": 21,
+    "failed": 0
+  },
+  "results": [
+    {
+      "name": "ALL_PLAY_ITEMS = 37",
+      "passed": true,
+      "detail": "实际: 37"
+    },
+    {
+      "name": "ALL_TEST_CONFIGS = 30",
+      "passed": true,
+      "detail": "实际: 30"
+    },
+    {
+      "name": "external = 3",
+      "passed": true,
+      "detail": "实际: 3"
+    },
+    {
+      "name": "去重后唯一 slug = 67",
+      "passed": true,
+      "detail": "实际: 67"
+    },
+    {
+      "name": "无空 slug",
+      "passed": true,
+      "detail": "空 slug: []"
+    },
+    {
+      "name": "无 \"unknown\" slug",
+      "passed": true
+    },
+    {
+      "name": "无重复最终 slug",
+      "passed": true,
+      "detail": "Set size: 67, array length: 67"
+    },
+    {
+      "name": "全部 67 个 slug 可解析到 UnifiedPlayDefinition",
+      "passed": true,
+      "detail": "不可解析: []"
+    },
+    {
+      "name": "全部解析结果有 originalConfig",
+      "passed": true,
+      "detail": "缺少 config: []"
+    },
+    {
+      "name": "external: hogwarts-sorting 解析成功",
+      "passed": true,
+      "detail": "source=external, runtimeKind=external"
+    },
+    {
+      "name": "external: city-match 解析成功",
+      "passed": true,
+      "detail": "source=external, runtimeKind=external"
+    },
+    {
+      "name": "external: rank-assessment 解析成功",
+      "passed": true,
+      "detail": "source=external, runtimeKind=external"
+    },
+    {
+      "name": "重复项 where-meet-partner 优先使用 ALL_PLAY_ITEMS",
+      "passed": true,
+      "detail": "实际: all-play-items"
+    },
+    {
+      "name": "重复项 family-mirror 优先使用 ALL_PLAY_ITEMS",
+      "passed": true,
+      "detail": "实际: all-play-items"
+    },
+    {
+      "name": "重复项 future-letter 优先使用 ALL_PLAY_ITEMS",
+      "passed": true,
+      "detail": "实际: all-play-items"
+    },
+    {
+      "name": "how-they-see-you 可解析",
+      "passed": true
+    },
+    {
+      "name": "how-they-see-you-2 可解析",
+      "passed": true
+    },
+    {
+      "name": "how-they-see-you 与 how-they-see-you-2 同时存在",
+      "passed": true
+    },
+    {
+      "name": "how-they-see-you 与 how-they-see-you-2 配置不相同",
+      "passed": true
+    },
+    {
+      "name": "不存在的 slug 返回 null",
+      "passed": true
+    },
+    {
+      "name": "空字符串 slug 返回 null",
+      "passed": true
+    }
+  ],
+  "counts": {
+    "allPlayItems": 37,
+    "entertainmentTest": 30,
+    "external": 3,
+    "duplicates": [
+      "where-meet-partner",
+      "family-mirror",
+      "future-letter"
+    ],
+    "deduplicatedSlugs": 67,
+    "resolvableCount": 67
+  },
+  "externalStatus": {
+    "hogwarts-sorting": {
+      "resolvable": true,
+      "hasOriginalConfig": true,
+      "runtimeKind": "external"
+    },
+    "city-match": {
+      "resolvable": true,
+      "hasOriginalConfig": true,
+      "runtimeKind": "external"
+    },
+    "rank-assessment": {
+      "resolvable": true,
+      "hasOriginalConfig": true,
+      "runtimeKind": "external"
+    }
+  },
+  "duplicateVerification": {
+    "where-meet-partner": {
+      "source": "all-play-items",
+      "expected": "all-play-items",
+      "passed": true
+    },
+    "family-mirror": {
+      "source": "all-play-items",
+      "expected": "all-play-items",
+      "passed": true
+    },
+    "future-letter": {
+      "source": "all-play-items",
+      "expected": "all-play-items",
+      "passed": true
+    }
+  },
+  "dualSlugCheck": {
+    "how-they-see-you": true,
+    "how-they-see-you-2": true,
+    "bothExist": true
+  },
+  "audit_date": "2026-10-17",
+  "method": "Existing assertion script executed unchanged except absolute import resolution and temporary report destination. No UI build, model API or database invoked.",
+  "source_files": [
+    {
+      "path": "hualing-frontend/scripts/test-playground-resolution.ts",
+      "sha256": "741daa8b28edd7bcf89ab36772d1878ddbb8eff373531a73a7cf7cd44ee95d13"
+    },
+    {
+      "path": "hualing-frontend/lib/unifiedPlayDefinition.ts",
+      "sha256": "f324d6bb10b78cb235d875cf7ec2202d5a97b73ca9d205f8b6a5d37df598d183"
+    },
+    {
+      "path": "hualing-frontend/src/features/playground/configs/playItems.ts",
+      "sha256": "a719d76ec78d86f2e27e32936ffa57e12613b6b04f3d0158bfd5ba75919baa17"
+    },
+    {
+      "path": "hualing-frontend/src/features/entertainment-tests/configIndex.ts",
+      "sha256": "46d1a4d8318666004cb02590fc9b9ca54ac559f2f7260d59aa761bd6cc1ef016"
+    },
+    {
+      "path": "hualing-frontend/lib/externalTestRegistry.ts",
+      "sha256": "2edca2b873d84958fb834e10bf73540060a7c84d879b37e1ab5b5ced1c32119f"
+    }
+  ],
+  "limits": [
+    "21 assertions cover configuration resolution, not all 67 interactive flows.",
+    "Historical frontend report had 84 existing TypeScript errors; no full build rerun in this audit."
+  ]
+}

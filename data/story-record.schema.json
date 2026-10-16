@@ -1,0 +1,383 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Story factor record: exported core contract",
+  "description": "Core structural constraints from the existing validator. Portfolio validator additionally checks beat order, hook count and literal evidence. Not a complete replacement for editorial review.",
+  "type": "object",
+  "required": [
+    "title",
+    "频道",
+    "题材",
+    "超短简介",
+    "简介钩子",
+    "情节链",
+    "情节变化",
+    "对手弧线",
+    "回收道具",
+    "可复用装置",
+    "身份锚点",
+    "核心伤害",
+    "开局卡点",
+    "主角弧线",
+    "读者爽点",
+    "结局"
+  ],
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "频道": {
+      "type": "string",
+      "minLength": 1
+    },
+    "题材": {
+      "type": "array"
+    },
+    "超短简介": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 60
+    },
+    "简介钩子": {
+      "type": "string",
+      "minLength": 1
+    },
+    "情节链": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 14,
+      "items": {
+        "type": "object",
+        "required": [
+          "序",
+          "位置",
+          "节拍类型",
+          "卡点类型",
+          "触发事件",
+          "动作",
+          "结果",
+          "情绪效果",
+          "原文关键句"
+        ],
+        "properties": {
+          "序": {
+            "type": "integer"
+          },
+          "位置": {
+            "type": "string",
+            "minLength": 1
+          },
+          "节拍类型": {
+            "type": "string",
+            "minLength": 1,
+            "enum": [
+              "受损",
+              "反击",
+              "卡点"
+            ]
+          },
+          "卡点类型": {
+            "type": "string"
+          },
+          "触发事件": {
+            "type": "string",
+            "minLength": 1
+          },
+          "动作": {
+            "type": "string",
+            "minLength": 1
+          },
+          "结果": {
+            "type": "string",
+            "minLength": 1
+          },
+          "情绪效果": {
+            "type": "string",
+            "minLength": 1
+          },
+          "原文关键句": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "情节变化": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "required": [
+          "序",
+          "变化类型",
+          "变化前",
+          "变化后",
+          "变化方式",
+          "驱动动作",
+          "代价"
+        ],
+        "properties": {
+          "序": {
+            "type": "integer"
+          },
+          "变化类型": {
+            "type": "string",
+            "minLength": 1,
+            "enum": [
+              "关系变化",
+              "认知变化",
+              "地位变化",
+              "力量变化",
+              "信息变化",
+              "资源变化"
+            ]
+          },
+          "变化前": {
+            "type": "string",
+            "minLength": 1
+          },
+          "变化后": {
+            "type": "string",
+            "minLength": 1
+          },
+          "变化方式": {
+            "type": "string",
+            "minLength": 1
+          },
+          "驱动动作": {
+            "type": "string",
+            "minLength": 1
+          },
+          "代价": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "对手弧线": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "角色",
+          "动机",
+          "手段",
+          "弱点",
+          "结局"
+        ],
+        "properties": {
+          "角色": {
+            "type": "string",
+            "minLength": 1
+          },
+          "动机": {
+            "type": "string",
+            "minLength": 1
+          },
+          "手段": {
+            "type": "string",
+            "minLength": 1
+          },
+          "弱点": {
+            "type": "string",
+            "minLength": 1
+          },
+          "结局": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "回收道具": {
+      "type": "array"
+    },
+    "可复用装置": {
+      "type": "array"
+    },
+    "身份锚点": {
+      "type": "object",
+      "required": [
+        "主角身份",
+        "对手身份",
+        "关系结构",
+        "身份秘密",
+        "地位落差"
+      ],
+      "properties": {
+        "主角身份": {
+          "type": "string",
+          "minLength": 1
+        },
+        "对手身份": {
+          "type": "array"
+        },
+        "关系结构": {
+          "type": "string",
+          "minLength": 1
+        },
+        "身份秘密": {
+          "type": "string",
+          "minLength": 1
+        },
+        "地位落差": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "核心伤害": {
+      "type": "object",
+      "required": [
+        "伤害类型",
+        "承受者",
+        "施害者与旁观者",
+        "代价量级",
+        "原文证据"
+      ],
+      "properties": {
+        "伤害类型": {
+          "type": "array"
+        },
+        "承受者": {
+          "type": "string",
+          "minLength": 1
+        },
+        "施害者与旁观者": {
+          "type": "string",
+          "minLength": 1
+        },
+        "代价量级": {
+          "type": "string",
+          "minLength": 1
+        },
+        "原文证据": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "开局卡点": {
+      "type": "object",
+      "required": [
+        "前3段做了什么",
+        "钩子类型",
+        "信息差",
+        "情绪值",
+        "读者此刻想看到什么",
+        "原文钩子句"
+      ],
+      "properties": {
+        "前3段做了什么": {
+          "type": "string",
+          "minLength": 1
+        },
+        "钩子类型": {
+          "type": "string",
+          "minLength": 1,
+          "enum": [
+            "身份错位",
+            "隐藏身份",
+            "误会",
+            "当众羞辱",
+            "生死危机",
+            "重生先知",
+            "物质落差",
+            "异常规则"
+          ]
+        },
+        "信息差": {
+          "type": "string",
+          "minLength": 1
+        },
+        "情绪值": {
+          "type": "string",
+          "minLength": 1
+        },
+        "读者此刻想看到什么": {
+          "type": "string",
+          "minLength": 1
+        },
+        "原文钩子句": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "主角弧线": {
+      "type": "object",
+      "required": [
+        "初期行为",
+        "转折点",
+        "底牌",
+        "手段"
+      ],
+      "properties": {
+        "初期行为": {
+          "type": "string",
+          "minLength": 1
+        },
+        "转折点": {
+          "type": "string",
+          "minLength": 1
+        },
+        "底牌": {
+          "type": "array"
+        },
+        "手段": {
+          "type": "array"
+        }
+      }
+    },
+    "读者爽点": {
+      "type": "object",
+      "required": [
+        "爽点类型",
+        "情绪曲线",
+        "虐爽比"
+      ],
+      "properties": {
+        "爽点类型": {
+          "type": "array"
+        },
+        "情绪曲线": {
+          "type": "string",
+          "minLength": 1
+        },
+        "虐爽比": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "结局": {
+      "type": "object",
+      "required": [
+        "结局类型",
+        "主角结局",
+        "对手结局",
+        "结尾最后一句"
+      ],
+      "properties": {
+        "结局类型": {
+          "type": "string",
+          "minLength": 1
+        },
+        "主角结局": {
+          "type": "string",
+          "minLength": 1
+        },
+        "对手结局": {
+          "type": "string",
+          "minLength": 1
+        },
+        "结尾最后一句": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}
