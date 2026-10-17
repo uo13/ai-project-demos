@@ -1,0 +1,13 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';
+const outline=JSON.parse(readFileSync(new URL('../data/generation-sample.json',import.meta.url),'utf8'));
+const metrics=JSON.parse(readFileSync(new URL('../data/generation-metrics.json',import.meta.url),'utf8'));
+const story=readFileSync(new URL('../data/generation-story-sample.txt',import.meta.url),'utf8');
+const beats=outline['情节链'];
+const finalLine=outline['结局']['结尾最后一句'];
+const anchors=[outline['开局卡点']['开局钩子句'],outline['核心伤害']['关键证据句'],...beats.map(b=>b['拟定关键句']),finalLine];
+const enums={beat:['受损','反击','卡点'],hook:['反转类','打脸类','身份揭露类','信息揭露类','情绪类','危机类','决裂类','误会类','悬念类','当众羞辱类'],emotion:['痛','怒','慌','爽','疑','期待','释然'],ending:['爽感收尾','打脸收尾','悲剧收尾','反转收尾','温情收尾','开放式收尾']};
+test('Original outline satisfies the published generation contract',()=>{assert(beats.length>=8&&beats.length<=14,'beats 8-14');assert(beats.filter(b=>b['节拍类型']==='卡点').length>=4,'turning points >= 4');let last=-1;for(const b of beats){const m=/约(\d+)%/.exec(b['位置']||'');assert(m,'position format');assert(+m[1]>last,'position ascending');last=+m[1];assert(enums.beat.includes(b['节拍类型']),'beat type');assert(enums.emotion.includes(b['情绪效果']),'emotion');if(b['节拍类型']==='卡点')assert(enums.hook.includes(b['卡点类型']),'hook taxonomy');assert(b['触发事件']&&b['动作']&&b['结果'],'event fields');assert(b['拟定关键句'].length<=40,'key line <= 40');}assert(enums.ending.includes(outline['结局']['结局类型']),'ending taxonomy');assert(finalLine.length<=50,'final line <= 50');});
+test('Every declared anchor appears verbatim in the story sample',()=>{for(const line of anchors){assert(line&&line.length,'anchor non-empty');assert(story.includes(line),'missing anchor: '+line);}});
+test('The declared final line closes the story sample',()=>{const lines=story.trim().split(/\r?\n/).filter(l=>l.trim());assert(lines[lines.length-1].includes(finalLine),'final line is last');});
+test('Published metrics match the published artifacts',()=>{const han=(story.match(/[\u4e00-\u9fff]/g)||[]).length;assert.equal(metrics.outline_beats,beats.length);assert.equal(metrics.outline_turning_points,beats.filter(b=>b['节拍类型']==='卡点').length);assert.equal(metrics.outline_changes,outline['情节变化'].length);assert.equal(metrics.outline_foes,outline['对手弧线'].length);assert.equal(metrics.check_lines,anchors.length);assert.equal(metrics.check_items,metrics.check_lines+1);assert.equal(metrics.check_passed,metrics.check_items);assert.equal(metrics.story_chars,han);});
+test('Sample artifacts carry no private workspace markers',()=>{const markers=['deepseek-'+'harness','语'+'料库'];const text=story+JSON.stringify(outline);for(const marker of markers)assert(!text.includes(marker),'marker '+marker);});
