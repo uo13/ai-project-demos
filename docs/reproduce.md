@@ -20,6 +20,8 @@ python -B -m unittest discover -s tests -p "test_*.py"
 
 `demos/story-lab/validator.mjs` 是本次新增的公开参考实现，`data/story-sample.json` 是本次新写的完整夹具。两者不包含第三方正文。私有原校验器与公开实现不完全等价，具体差异在案例中列出。
 
+`data/generation-sample.json` 与 `data/generation-story-sample.txt` 是生成门槛案例的本次原创演示产物；`tests/generation-sample.test.mjs` 固定大纲、成稿与统计数字三者的对应关系。两者都不包含私有对标库的书名、正文或摘录。
+
 ## 私有源码持有者复跑花令
 
 需要现有花令源码，以及 Python 的 `aiohttp`、`pydantic`。源代码应为可信的项目代码；审计器在本机执行它，仅替换应用导入、模型和工具执行边界。
@@ -59,6 +61,7 @@ python -B tools/export-story-schema.py --pipeline-root /path/to/duanju-factors -
 | 原文、摘录与行号重核 | 引文存在且定位一致 | 机制解释和情绪判断正确 |
 | 文件哈希 | 源快照和报告之间的版本关联 | 作者身份、个人分工、商业效果 |
 | 新增候选守卫通过 | 参考修复覆盖了这些回归场景 | 修复已合入生产环境 |
+| 生成演示的逐字终检 | 契约与终检在该次运行、该篇产物上有效 | 平均质量、可发布性或读者效果 |
 
 ## 报告更新
 
