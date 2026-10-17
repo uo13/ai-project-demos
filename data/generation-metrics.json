@@ -1,0 +1,18 @@
+{
+  "case": "generation-gate-demo",
+  "run_date": "2026-10-17",
+  "kind": "single_run_original_demo",
+  "outline_beats": 14,
+  "outline_turning_points": 14,
+  "outline_changes": 6,
+  "outline_foes": 3,
+  "check_lines": 17,
+  "check_items": 18,
+  "check_passed": 18,
+  "story_chars": 4120,
+  "limits": [
+    "Single demo run; not an average quality or publishable-quality claim.",
+    "Verbatim checks prove placement, not literary quality or reader effect.",
+    "No private corpus titles, text or excerpts are published in this case."
+  ]
+}
